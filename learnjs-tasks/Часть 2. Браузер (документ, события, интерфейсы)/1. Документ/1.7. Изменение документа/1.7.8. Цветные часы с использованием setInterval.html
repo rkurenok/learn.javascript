@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Цветные часы</title>
+    <meta charset="UTF-8">
+    <style>
+        #hours {
+            color: red;
+        }
+
+        #minutes {
+            color: green;
+        }
+
+        #seconds {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="time"><span id="hoursId">hh</span>:<span id="minutesId">mm</span>:<span
+            id="secondsId">ss</span></div>
+    <input type="button" value="start" onclick="start()">
+    <input type="button" value="stop" onclick="stop()">
+
+    <script>
+        let timerId;
+
+        function start() {
+            timerId = setInterval(updateTime, 1000);
+            updateTime();
+        }
+
+        function stop() {
+            clearInterval(timerId);
+            timerId = null;
+        }
+
+        function updateTime() {
+            let date = new Date();
+
+            let hours = date.getHours();
+            if (hours < 10) {
+                hours = '0' + hours;
+            }
+            hoursId.innerHTML = hours;
+
+            let minutes = date.getMinutes();
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+            minutesId.innerHTML = minutes;
+
+            let seconds = date.getSeconds();
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
+            secondsId.innerHTML = seconds;
+        }
+    </script>
+</body>
+
+</html>
